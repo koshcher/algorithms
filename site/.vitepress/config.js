@@ -2,11 +2,11 @@ import { defineConfig } from "vitepress"
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Імя Студента",
-  description: "Завдання Ім'я Студента",
+  title: "Кощей Роман",
+  description: "Структури даних та алгоритми Кощея Романа",
 
   // replace knu-template with name of your repository
-  base: "/knu-template/",
+  base: "/algorithms/",
 
   themeConfig: {
     nav: [{ text: "Лабораторні", link: "/labs/1" }],
@@ -18,8 +18,8 @@ export default defineConfig({
       },
     ],
 
-    // socialLinks: [
-    //   { icon: "github", link: "https://github.com/vuejs/vitepress" },
-    // ],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/koshcher/algorithms" },
+    ],
   },
 })
