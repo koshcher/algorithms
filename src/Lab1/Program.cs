@@ -1,7 +1,7 @@
 ﻿using Lab1;
 using System.Diagnostics;
 
-int[] array = GenerateArray(1000);
+int[] array = GenerateArray(100000);
 var linkedList = new LinkedList<int>(array);
 
 var search = array[new Random().Next(0, array.Length - 1)];
@@ -16,6 +16,7 @@ for (int i = 0; i < 10000; i += 1)
 }
 
 MeasureSearchTime("Traversing search for array", () => array.TraversingSearch(search));
+
 MeasureSearchTime("Traversing search for linked list", () => linkedList.TraversingSearch(search));
 
 Console.WriteLine();
