@@ -1,51 +1,52 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Lab1;
+﻿using Lab1;
 using System.Diagnostics;
 
-int[] array = [5, 6, 8, 4, 10, -4, -3, -7, 3, 1, 2, -8, -15, 17, 80, 20, 90, -100];
+int[] array = GenerateArray(1000);
 var linkedList = new LinkedList<int>(array);
 
+var search = array[new Random().Next(0, array.Length - 1)];
+
 // warm up of runtime
-//for (int i = 0; i < 10000; i += 1)
-//{
-//    _ = array.TraversingSearch(-7);
-//    _ = linkedList.TraversingSearch(-7);
-//    _ = array.BarrierSearch(-7);
-//    _ = linkedList.BarrierSearch(-7);
-//}
+for (int i = 0; i < 10000; i += 1)
+{
+    _ = array.TraversingSearch(search);
+    _ = linkedList.TraversingSearch(search);
+    _ = array.BarrierSearch(search);
+    _ = linkedList.BarrierSearch(search);
+}
 
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
+MeasureSearchTime("Traversing search for array", () => array.TraversingSearch(search));
+MeasureSearchTime("Traversing search for linked list", () => linkedList.TraversingSearch(search));
 
-MeasureSearchTime("Traversing search for array", () => array.TraversingSearch(-7));
-MeasureSearchTime("Traversing search for linked list", () => linkedList.TraversingSearch(-7));
+Console.WriteLine();
 
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
-
-MeasureSearchTime("Barrier search for array", () => array.BarrierSearch(-7));
-MeasureSearchTime("Barrier search for linked list", () => linkedList.BarrierSearch(-7));
-
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
+MeasureSearchTime("Barrier search for array", () => array.BarrierSearch(search));
+MeasureSearchTime("Barrier search for linked list", () => linkedList.BarrierSearch(search));
 
 Array.Sort(array);
 linkedList = SortLinkedList(linkedList);
+Console.WriteLine();
 
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
+MeasureSearchTime("Binary search for array", () => array.BinarySearch(search));
+MeasureSearchTime("Binary search for linked list", () => linkedList.BinarySearch(search));
 
-MeasureSearchTime("Binary search for array", () => array.BinarySearch(-7));
-MeasureSearchTime("Binary search for linked list", () => linkedList.BinarySearch(-7));
+Console.WriteLine();
 
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
+MeasureSearchTime("Golden Ratio Binary search for array", () => array.GoldenRatioBinarySearch(search));
+MeasureSearchTime("Golden Ratio Binary search for linked list", () => linkedList.GoldenRatioBinarySearch(search));
 
-MeasureSearchTime("Golden Ratio Binary search for array", () => array.GoldenRatioBinarySearch(-7));
-MeasureSearchTime("Golden Ratio Binary search for linked list", () => linkedList.GoldenRatioBinarySearch(-7));
+Console.WriteLine();
 
-PrintEnumerable(array);
-PrintEnumerable(linkedList);
+static int[] GenerateArray(int count)
+{
+    int[] arr = new int[count];
+    for (int i = 0; i < count; i++)
+    {
+        arr[i] = new Random().Next();
+    }
+    return arr;
+}
+
 static void MeasureSearchTime(string message, Func<int> search)
 {
     Stopwatch stopwatch = new();
@@ -54,7 +55,7 @@ static void MeasureSearchTime(string message, Func<int> search)
     stopwatch.Stop();
 
     Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine($"{message}: index={index} time={stopwatch.ElapsedTicks} ticks");
+    Console.WriteLine($"{message}: index = {index} time = {stopwatch.ElapsedTicks} ticks");
     Console.ForegroundColor = ConsoleColor.White;
 }
 

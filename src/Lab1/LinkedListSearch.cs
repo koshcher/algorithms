@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lab1;
+﻿namespace Lab1;
 
 public static class LinkedListSearch
 {
@@ -51,26 +45,23 @@ public static class LinkedListSearch
         {
             int mid = left + (right - left) / 2;
 
-            // Move to the middle of the linked list
             LinkedListNode<int>? currentNode = MoveToIndex(sortedList, mid);
 
             if (currentNode.Value == searchValue)
             {
-                return index + mid; // Found at current position
+                return index + mid;
             }
             else if (currentNode.Value < searchValue)
             {
-                // Adjust the search range to the right
                 left = mid + 1;
             }
             else
             {
-                // Adjust the search range to the left
                 right = mid - 1;
             }
         }
 
-        return -1; // Element not found
+        return -1;
     }
 
     public static int GoldenRatioBinarySearch(this LinkedList<int> linkedList, int searchValue)
