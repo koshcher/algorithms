@@ -14,6 +14,9 @@ Sort.RandomizedQuickSortDesc(array, 0, array.Length - 1);
 Console.WriteLine("\nRandomized quick soct descending:");
 PrintArray(array);
 
+var optimal = Oil.OptimalMainCanal(Oil.TestWells);
+Console.WriteLine($"\nOptimal vertical coodinates for main oil canal: {optimal}");
+
 static void PrintArray(int[] arr)
 {
     foreach (var item in arr)
